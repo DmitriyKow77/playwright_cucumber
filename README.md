@@ -11,7 +11,7 @@ Prerquisites
 Steps
 - Clone the Github project:
 ```
-git clone https://github.com/taulinger/bdd-play
+git clone https://github.com/DmitriyKow77/playwright_cucumber.git
 ```
 - Change to the git repository and run Maven:
 ```
