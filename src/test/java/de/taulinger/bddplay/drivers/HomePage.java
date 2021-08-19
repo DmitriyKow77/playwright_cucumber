@@ -1,6 +1,5 @@
 package de.taulinger.bddplay.drivers;
 
-import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Page;
 
 public class HomePage extends BasePage {
@@ -11,6 +10,9 @@ public class HomePage extends BasePage {
     }
 
     public void requestDemo() {
+        page.waitForSelector("text=Request A Demo", new Page.WaitForSelectorOptions()
+                .withTimeout(10000)
+        );
         page.click("text=Request A Demo");
     }
 

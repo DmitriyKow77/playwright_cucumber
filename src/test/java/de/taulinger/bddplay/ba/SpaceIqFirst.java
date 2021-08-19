@@ -56,6 +56,7 @@ public class SpaceIqFirst extends BasicStep {
     @Then("I verify an error appears {string}")
     public void iVerifyAnErrorAppears(String expectedError) {
         ElementHandle error = demoPage.getError();
+        error.waitForElementState(ElementHandle.ElementState.VISIBLE);
         assertEquals(error.textContent(), expectedError);
     }
 }
