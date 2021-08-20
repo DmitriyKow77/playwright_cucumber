@@ -10,9 +10,7 @@ public class HomePage extends BasePage {
     }
 
     public void requestDemo() {
-        page.waitForSelector("text=Request A Demo", new Page.WaitForSelectorOptions()
-                .withTimeout(10000)
-        );
+        page.waitForSelector("text=Request A Demo", Timeouts.M.value());
         page.click("text=Request A Demo");
     }
 

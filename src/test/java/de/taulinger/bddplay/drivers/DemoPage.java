@@ -33,6 +33,6 @@ public class DemoPage extends BasePage {
     }
 
     public ElementHandle getError() {
-        return page.querySelector("css=.hs_error_rollup");
+        return page.waitForSelector("css=.hs_error_rollup", Timeouts.M.value());
     }
 }
