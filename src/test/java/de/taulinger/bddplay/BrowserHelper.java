@@ -1,17 +1,15 @@
 package de.taulinger.bddplay;
 
 import com.microsoft.playwright.*;
-
 import java.util.Map;
-
 import static java.util.stream.Collectors.joining;
 
 public class BrowserHelper {
-    private static Browser browser = null;
-    private static BrowserContext context = null;
-    private static Page page = null;
+    private  Browser browser = null;
+    private  BrowserContext context = null;
+    private  Page page = null;
 
-    public static Browser createInstance(String browserTypeAsString) {
+    public  Browser createInstance(String browserTypeAsString) {
         if (browser == null) {
             BrowserType browserType = null;
             switch (browserTypeAsString) {
@@ -45,28 +43,28 @@ public class BrowserHelper {
         return browser;
     }
 
-    public static Browser getBrowser() {
+    public  Browser getBrowser() {
         if (browser == null) {
             throw new Error("you need init browser first!");
         }
         return browser;
     }
 
-    public static BrowserContext getContext(){
+    public  BrowserContext getContext(){
         if (context == null) {
             throw new Error("you need init browser first!");
         }
         return context;
     }
 
-    public static Page getCurrentPage(){
+    public  Page getCurrentPage(){
         if (page == null) {
             throw new Error("you need navigate to page first!");
         }
         return page;
     }
 
-    public static Page navigate(String baseUrl, String clientType, Map<String, String> queryParams) {
+    public  Page navigate(String baseUrl, String clientType, Map<String, String> queryParams) {
         if (clientType.equals("mobile")) {
             page = newPage(context = newMobileBrowserContext());
             if (queryParams == null || queryParams.isEmpty()) {
@@ -89,7 +87,7 @@ public class BrowserHelper {
         return page;
     }
 
-    public static void closeSession(){
+    public  void closeSession(){
         if (browser != null) {
             browser.close();
             browser = null;
@@ -104,15 +102,15 @@ public class BrowserHelper {
         }
     }
 
-    protected static Page newPage(BrowserContext browserContext) {
+    protected  Page newPage(BrowserContext browserContext) {
         return browserContext.newPage();
     }
 
-    protected static BrowserContext newDesktopBrowserContext() {
+    protected  BrowserContext newDesktopBrowserContext() {
         return browser.newContext(new Browser.NewContextOptions().withViewport(1800, 1200));
     }
 
-    protected static BrowserContext newMobileBrowserContext() {
+    protected  BrowserContext newMobileBrowserContext() {
         return browser.newContext(new Browser.NewContextOptions().withViewport(375, 667).withDeviceScaleFactor(2));
     }
 }
