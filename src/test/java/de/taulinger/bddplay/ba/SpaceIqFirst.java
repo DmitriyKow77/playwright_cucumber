@@ -2,10 +2,10 @@ package de.taulinger.bddplay.ba;
 import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Page;
 import de.taulinger.bddplay.BasicStep;
-import de.taulinger.bddplay.BrowserHelper;
 import de.taulinger.bddplay.drivers.DemoFormInputs;
 import de.taulinger.bddplay.drivers.DemoPage;
 import de.taulinger.bddplay.drivers.HomePage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,10 +18,10 @@ public class SpaceIqFirst extends BasicStep {
     @Given("I open SpaceIq home page with {string} for {string} usage")
     public void iOpenSpaceIqHomePageWithChromiumForDesktopUsage(String browserType, String platform) {
         final String homeUrl = "https://spaceiq.com/";
-        browser = BrowserHelper.createInstance(browserType);
-        page = BrowserHelper.navigate(homeUrl, platform, null);
+        browser = browserHelper.createInstance(browserType);
+        page = browserHelper.navigate(homeUrl, platform, null);
         page.waitForLoadState(Page.LoadState.NETWORKIDLE);
-        context = BrowserHelper.getContext();
+        context = browserHelper.getContext();
     }
 
     @When("I click button \"Request a demo\"")
@@ -58,5 +58,12 @@ public class SpaceIqFirst extends BasicStep {
         ElementHandle error = demoPage.getError();
         error.waitForElementState(ElementHandle.ElementState.VISIBLE);
         assertEquals(error.textContent(), expectedError);
+    }
+
+    @And("I accept cookies")
+    public void iAcceptCookies() {
+        page = browserHelper.getCurrentPage();
+        HomePage homePage = new HomePage(page);
+        homePage.acceptCookies();
     }
 }

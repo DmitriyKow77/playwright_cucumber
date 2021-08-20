@@ -9,6 +9,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Given;
+import org.junit.Before;
+
 import static org.junit.Assert.assertEquals;
 
 public class MainMenuMobileStep extends BasicStep {
@@ -20,10 +22,10 @@ public class MainMenuMobileStep extends BasicStep {
     }
 
 
-    @And("I accept cookies")
-    public void iAcceptCookies() {
-        page = BrowserHelper.getCurrentPage();
-        HomePage homePage = new HomePage(page);
-        homePage.acceptCookies();
-    }
+//    @And("I accept cookies")
+//    public void iAcceptCookies() {
+//        page = BrowserHelper.getCurrentPage();
+//        HomePage homePage = new HomePage(page);
+//        homePage.acceptCookies();
+//    }
 }
